@@ -11,11 +11,22 @@ class HomePage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(
-                  'Shoes\nCollection',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Shoes\nCollection',
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                TextField(),
+                Expanded(child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: Icon(Icons.search),
+                  ),
+                )),
               ],
             ),
           ],
