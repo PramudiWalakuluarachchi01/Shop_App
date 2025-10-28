@@ -18,12 +18,28 @@ class ShoeApp extends StatelessWidget {
           seedColor: Color.fromRGBO(254, 206, 1, 1),
           primary: Color.fromRGBO(254, 206, 1, 1),
         ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(fontWeight:FontWeight.bold,fontSize: 16),
+          hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
         ),
+        textTheme: TextTheme(
+          titleLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+
+        useMaterial3: true,
       ),
-      home:const HomePage(),
+
+      home:  const HomePage(
+      ),
     );
   }
 }
