@@ -37,11 +37,11 @@ final products = [
 ];
 
 final cart = [
-    {
+  {
     'id': '3',
     'title': 'Men\'s Puma Shoes',
     'price': 80.59,
-    'sizes': [6, 8, 10],
+    'sizes': 6,
     'company': 'Puma',
     'imageUrl': 'assets/images/Puma.jpg',
   },

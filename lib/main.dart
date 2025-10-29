@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/cart_provider.dart';
 import 'package:shop_app/home_page.dart';
 
 void main() {
@@ -10,35 +12,38 @@ class ShoeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Shoe App',
-      theme: ThemeData(
-        fontFamily: 'Lato',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Color.fromRGBO(254, 206, 1, 1),
-          primary: Color.fromRGBO(254, 206, 1, 1),
-        ),
-        appBarTheme: const AppBarTheme(
-          titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MaterialApp(
+        title: 'Shoe App',
+        theme: ThemeData(
+          fontFamily: 'Lato',
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Color.fromRGBO(254, 206, 1, 1),
+            primary: Color.fromRGBO(254, 206, 1, 1),
           ),
+          appBarTheme: const AppBarTheme(
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
+          ),
+          textTheme: TextTheme(
+            titleLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+      
+          useMaterial3: true,
         ),
-        inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
+      
+        home:  const HomePage(
         ),
-        textTheme: TextTheme(
-          titleLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-          titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          bodySmall: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-
-        useMaterial3: true,
-      ),
-
-      home:  const HomePage(
       ),
     );
   }
