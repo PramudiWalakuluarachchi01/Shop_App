@@ -17,10 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:IndexedStack(
-        index: currentPage,
-        children: pages,
-      ),
+      body: IndexedStack(index: currentPage, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 0,
         unselectedFontSize: 0,

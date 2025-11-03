@@ -12,8 +12,8 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   final List<String> filters = const ['All', 'Addidas', 'Nike', 'Puma'];
-
   late String selectedFilter;
+  String searchQuery = ''; // 🔍 Search text
 
   @override
   void initState() {
@@ -28,9 +28,21 @@ class _ProductListState extends State<ProductList> {
       borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
     );
 
+    // 🔎 Filter products by company + search query
+    final filteredProducts = products.where((product) {
+      final company = (product['company'] as String).toLowerCase();
+      final title = (product['title'] as String).toLowerCase();
+      final matchesCompany = selectedFilter == 'All'
+          ? true
+          : company.contains(selectedFilter.toLowerCase());
+      final matchesSearch = title.contains(searchQuery.toLowerCase());
+      return matchesCompany && matchesSearch;
+    }).toList();
+
     return SafeArea(
       child: Column(
         children: [
+          // 🟩 Header section (title + search bar)
           Row(
             children: [
               Padding(
@@ -40,9 +52,14 @@ class _ProductListState extends State<ProductList> {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: TextField(
-                  decoration: InputDecoration(
+                  onChanged: (value) {
+                    setState(() {
+                      searchQuery = value; // 🧠 Updates as you type
+                    });
+                  },
+                  decoration: const InputDecoration(
                     hintText: 'Search',
                     prefixIcon: Icon(Icons.search),
                     border: border,
@@ -53,13 +70,16 @@ class _ProductListState extends State<ProductList> {
               ),
             ],
           ),
+
+          // 🟨 Filter buttons (your design)
           SizedBox(
-            height: 120,
+            height: 80,
             child: ListView.builder(
               itemCount: filters.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final filter = filters[index];
+                final isSelected = selectedFilter == filter;
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: GestureDetector(
@@ -69,14 +89,18 @@ class _ProductListState extends State<ProductList> {
                       });
                     },
                     child: Chip(
-                      backgroundColor: selectedFilter == filter
+                      backgroundColor: isSelected
                           ? Theme.of(context).colorScheme.primary
-                          : Color.fromRGBO(245, 247, 249, 1),
+                          : const Color.fromRGBO(245, 247, 249, 1),
                       side: const BorderSide(
                         color: Color.fromRGBO(245, 247, 249, 1),
                       ),
                       label: Text(filter),
-                      labelStyle: const TextStyle(fontSize: 16),
+                      labelStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: isSelected ? Colors.black : Colors.black87,
+                      ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 15,
@@ -90,67 +114,31 @@ class _ProductListState extends State<ProductList> {
               },
             ),
           ),
+
+          // 🟦 Product list
           Expanded(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                if (constraints.maxWidth > 1080) {
-                  return GridView.builder(
-                    itemCount: products.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1,
-                        ),
-                    itemBuilder: (context, index) {
-                      final product = products[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProductDetailsPage(product: product);
-                              },
-                            ),
-                          );
-                        },
-                        child: ProductCard(
-                          title: product['title'] as String,
-                          price: product['price'] as double,
-                          image: product['imageUrl'] as String,
-                          backgroundColor: index.isEven
-                              ? const Color.fromRGBO(216, 240, 253, 1)
-                              : const Color.fromRGBO(245, 247, 249, 1),
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  return ListView.builder(
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      final product = products[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProductDetailsPage(product: product);
-                              },
-                            ),
-                          );
-                        },
-                        child: ProductCard(
-                          title: product['title'] as String,
-                          price: product['price'] as double,
-                          image: product['imageUrl'] as String,
-                          backgroundColor: index.isEven
-                              ? const Color.fromRGBO(216, 240, 253, 1)
-                              : const Color.fromRGBO(245, 247, 249, 1),
-                        ),
-                      );
-                    },
-                  );
-                }
+            child: ListView.builder(
+              itemCount: filteredProducts.length,
+              itemBuilder: (context, index) {
+                final product = filteredProducts[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ProductDetailsPage(product: product),
+                      ),
+                    );
+                  },
+                  child: ProductCard(
+                    title: product['title'] as String,
+                    price: product['price'] as double,
+                    image: product['imageUrl'] as String,
+                    backgroundColor: index.isEven
+                        ? const Color.fromRGBO(216, 240, 253, 1)
+                        : const Color.fromRGBO(245, 247, 249, 1),
+                  ),
+                );
               },
             ),
           ),
