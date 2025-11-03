@@ -5,7 +5,7 @@ final products = [
     'price': 99.99,
     'sizes': [6, 8, 10],
     'company': 'Addidas',
-    'imageUrl': 'assets/images/Addidas.jpg',
+    'imageUrl': 'assets/images/Addidas.png',
   },
 
   {
@@ -14,7 +14,7 @@ final products = [
     'price': 98.76,
     'sizes': [6, 8, 10],
     'company': 'Jordan',
-    'imageUrl': 'assets/images/Jordan.jpg',
+    'imageUrl': 'assets/images/Jordan.png',
   },
 
   {
@@ -23,7 +23,7 @@ final products = [
     'price': 85.89,
     'sizes': [6, 8, 10],
     'company': 'Nike',
-    'imageUrl': 'assets/images/Nike.jpg',
+    'imageUrl': 'assets/images/Nike.png',
   },
 
   {
@@ -32,7 +32,7 @@ final products = [
     'price': 80.59,
     'sizes': [6, 8, 10],
     'company': 'Puma',
-    'imageUrl': 'assets/images/Puma.jpg',
+    'imageUrl': 'assets/images/Puma.png',
   },
 ];
 
@@ -43,6 +43,6 @@ final cart = [
     'price': 80.59,
     'sizes': 6,
     'company': 'Puma',
-    'imageUrl': 'assets/images/Puma.jpg',
+    'imageUrl': 'assets/images/Puma.png',
   },
 ];
