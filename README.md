@@ -53,7 +53,7 @@ lib/
 
 # 📸 Screenshots
 
-<img src="https://github.com/PramudiWalakuluarachchi01/Shop_App/blob/dd29a9096a360d2492803e752a23e9c1e78d512b/shop_app.png"  width=300 height=400>
+<img src="https://github.com/PramudiWalakuluarachchi01/Shop_App/blob/1856c8ae32668c013e2c6adeb810ad9eb7a296bf/shop_app1.png"  width=300 height=400>
 
 ---
 
@@ -95,4 +95,5 @@ https://github.com/PramudiWalakuluarachchi01
 ---
 
 ⭐ If you like this project, consider giving it a star!
+
 
