@@ -53,15 +53,7 @@ lib/
 
 # 📸 Screenshots
 
-(Add screenshots of your app here)
-
-```
-![Home Screen](screenshots/home.png)
-
-![Product Details](screenshots/details.png)
-
-![Cart Page](screenshots/cart.png)
-```
+<img src="https://github.com/PramudiWalakuluarachchi01/Shop_App/blob/dd29a9096a360d2492803e752a23e9c1e78d512b/shop_app.png"  width=300 height=400>
 
 ---
 
@@ -103,3 +95,4 @@ https://github.com/PramudiWalakuluarachchi01
 ---
 
 ⭐ If you like this project, consider giving it a star!
+
